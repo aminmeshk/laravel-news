@@ -6,6 +6,8 @@
 /vendor
 .env
 .env.backup
+.env.local
+.env.production
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -14,3 +16,4 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.DS_STORE
