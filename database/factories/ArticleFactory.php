@@ -16,10 +16,10 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+        // $faker = fake('fa_IR');
         return [
-            'user_id' => fake()->numberBetween(1, 5),
-            'title' => fake()->sentence(4),
-            'content' => fake()->paragraphs(8, true)
+            'title' => fake('fa_IR')->realText(100),
+            'content' => fake('fa_IR')->realText(2000),
         ];
     }
 }

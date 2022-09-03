@@ -13,7 +13,10 @@ class UpdateArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if ($this->article->user_id != $this->user()->id) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -24,7 +27,8 @@ class UpdateArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => ['string', 'required'],
+            'content' => ['string', 'required']
         ];
     }
 }

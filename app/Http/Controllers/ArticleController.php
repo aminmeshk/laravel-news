@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
@@ -15,7 +16,11 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+
+        return Inertia::render('Article/Index', [
+            'articles' => $articles
+        ]);
     }
 
     /**
@@ -36,7 +41,12 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        //
+        $form_fields = $request->validated();
+        $form_fields['user_id'] = auth()->id();
+
+        Article::create($form_fields);
+
+        // return redirect()->route()
     }
 
     /**
