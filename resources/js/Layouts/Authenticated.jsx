@@ -21,7 +21,7 @@ export default function Authenticated({ auth, header, children }) {
                 </Link>
               </div>
 
-              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+              <div className="hidden space-x-8 sm:-my-px sm:mr-10 sm:flex">
                 <NavLink
                   href={route('dashboard')}
                   active={route().current('dashboard')}>
@@ -30,8 +30,8 @@ export default function Authenticated({ auth, header, children }) {
               </div>
             </div>
 
-            <div className="hidden sm:flex sm:items-center sm:ml-6">
-              <div className="ml-3 relative">
+            <div className="hidden sm:flex sm:items-center sm:mr-6">
+              <div className="mr-3 relative">
                 <Dropdown>
                   <Dropdown.Trigger>
                     <span className="inline-flex rounded-md">
@@ -41,7 +41,7 @@ export default function Authenticated({ auth, header, children }) {
                         {auth.user.name}
 
                         <svg
-                          className="ml-2 -mr-0.5 h-4 w-4"
+                          className="mr-2 -ml-0.5 h-4 w-4"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor">
@@ -55,7 +55,7 @@ export default function Authenticated({ auth, header, children }) {
                     </span>
                   </Dropdown.Trigger>
 
-                  <Dropdown.Content>
+                  <Dropdown.Content align="left">
                     <Dropdown.Link
                       href={route('logout')}
                       method="post"
@@ -67,7 +67,7 @@ export default function Authenticated({ auth, header, children }) {
               </div>
             </div>
 
-            <div className="-mr-2 flex items-center sm:hidden">
+            <div className="-ml-2 flex items-center sm:hidden">
               <button
                 onClick={() =>
                   setShowingNavigationDropdown(previousState => !previousState)

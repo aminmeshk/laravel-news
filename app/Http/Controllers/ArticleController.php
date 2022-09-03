@@ -9,6 +9,17 @@ use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
+    public function home()
+    {
+        $articles = Article::all()->map(function ($a) {
+            return $a->only(['id', 'title', 'content']);
+        });
+
+        return Inertia::render('Home', [
+            'articles' => $articles
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,11 +27,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-
-        return Inertia::render('Article/Index', [
-            'articles' => $articles
-        ]);
+        return redirect()->route('home');
     }
 
     /**
@@ -30,7 +37,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Article/Create');
     }
 
     /**
@@ -46,7 +53,7 @@ class ArticleController extends Controller
 
         Article::create($form_fields);
 
-        // return redirect()->route()
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -57,7 +64,9 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return Inertia::render('Article/Show', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -68,7 +77,9 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return Inertia::render('Article/Edit', [
+            'article' => $article
+        ]);
     }
 
     /**
@@ -80,7 +91,11 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        //
+        $form_fields = $request->validated();
+
+        $article->update($form_fields);
+
+        return redirect()->route('articles.show', ['article' => $article]);
     }
 
     /**
@@ -91,6 +106,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return redirect()->route('articles.index');
     }
 }
