@@ -25,9 +25,9 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::middleware('auth')->get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::resource('articles', ArticleController::class);

@@ -1,16 +1,22 @@
+import Button from '@/Components/Button';
 import Input from '@/Components/Input';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head, useForm } from '@inertiajs/inertia-react';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 const Create = ({ auth, errors, article }) => {
-  const { data, setData } = useForm({
+  const { data, setData, put, processing } = useForm({
     title: article.title,
     content: article.content,
   });
 
   const onHandleChange = event => {
     setData(event.target.name, event.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    put(route('articles.update', { article: article.id }));
   };
 
   return (
@@ -23,19 +29,23 @@ const Create = ({ auth, errors, article }) => {
         </h2>
       }>
       <Head title="خبر" />
-      <div className="flex flex-col">
-        <Input
-          name="title"
-          className="text-lg"
-          value={data.title}
-          handleChange={onHandleChange}
-        />
-        <Input
-          className="text-md"
-          value={data.content}
-          handleChange={onHandleChange}
-        />
-      </div>
+      <form onSubmit={onSubmit}>
+        <div className="flex flex-col">
+          <Input
+            name="title"
+            className="text-lg"
+            value={data.title}
+            handleChange={onHandleChange}
+          />
+          <Input
+            name="content"
+            className="text-md"
+            value={data.content}
+            handleChange={onHandleChange}
+          />
+          <Button processing={processing}>ثبت</Button>
+        </div>
+      </form>
     </Authenticated>
   );
 };

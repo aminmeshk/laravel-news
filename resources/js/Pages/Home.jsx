@@ -15,10 +15,10 @@ const Index = ({ auth, errors, articles }) => {
       <Head title="اخبار" />
       <div className="flex flex-col">
         {articles.map(a => (
-          <>
-            <div key={a.id}>{a.title}</div>
+          <div key={a.id}>
+            <div>{a.title}</div>
             <div className="text-xs text-gray-400 mb-4">{a.content}</div>
-          </>
+          </div>
         ))}
       </div>
     </Authenticated>

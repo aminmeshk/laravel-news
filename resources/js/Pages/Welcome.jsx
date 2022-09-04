@@ -9,9 +9,9 @@ export default function Welcome(props) {
         <div className="fixed top-0 right-0 px-6 py-4 sm:block">
           {props.auth.user ? (
             <Link
-              href={route('dashboard')}
+              href={route('home')}
               className="text-sm text-gray-700 dark:text-gray-500 underline">
-              Dashboard
+              Home
             </Link>
           ) : (
             <>
