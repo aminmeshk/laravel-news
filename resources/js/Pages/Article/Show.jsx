@@ -22,8 +22,8 @@ const Show = ({ article, auth, errors }) => {
           as="button"
           href={route('articles.destroy', { article: article.id })}
           method="delete">
-            پاک کردن
-          </Link>
+          پاک کردن
+        </Link>
       </div>
     </Authenticated>
   );
